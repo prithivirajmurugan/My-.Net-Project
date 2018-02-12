@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "SearchPg";
+    Layout = "~/Views/Shared/CustomerLayout.cshtml";
+}
+<head>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+    <script>
+
+        $(document).ready(function () {
+            $("#cityName").autocomplete({
+                source: function (req, res) {
+                    var city = $("#cityName").val();
+                    if (city != null) {
+                        $.getJSON("/Customer/cities", { cityname: city }, function (data) { res(data) });
+                    }
+                }, minLength: 3, delay: 300
+            });
+
+            $("#nearByArea").autocomplete(
+                {
+                    source: function (req, res) {
+                        var city = $("#cityName").val();
+                        var nearbyarea=$("#nearByArea").val();
+                        if (city != null && nearbyarea != null)
+                        {
+                            $.getJSON("/Customer/nearbyarea", { cityname: city, nearby: nearbyarea }, function (data) { res(data) });
+                        }
+
+                    },minLength:3,delay:300
+
+
+                });
+            $("#btn_getpg").click(function () {
+
+
+
+                if (($("#cityName").val() == "") || (($("#nearByArea").val() == ""))) {
+                    alert("Please Enter Values in Both the Fields");
+                }
+                else {
+                    var address = "/Customer/getlistpgs";
+                    var nearbyarea = $("#nearByArea").val();
+                    var city = $("#cityName").val();
+                    $.get(address, { cityname: city, nearby: nearbyarea }, function (data) {
+                        $("#pgList").html(data);
+                    });
+                }
+                });
+        });
+
+    </script>
+    <style>
+        td {
+            vertical-align:central;
+        }
+
+
+    </style>
+</head>
+
+<h2>Search PG</h2>
+<div align="left" class="form-login" style="width:600px">
+    <h1>Enter the City</h1>
+    @Html.TextBox("cityName", "", new { @class = "text text-danger" })<br /><br />
+    <h1>Enter the Locality</h1>
+    @Html.TextBox("nearByArea", "", new { @class = "text text-danger" })
+    <br /><br />
+        <input type="button" id="btn_getpg" value="GET PG" class="btn btn-info btn-md" />
+        <br />
+        <br />
+</div>
+<div align="left" id="pgList">
+
+</div>
+
+

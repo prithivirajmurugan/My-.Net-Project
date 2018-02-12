@@ -1,0 +1,91 @@
+﻿@model IEnumerable<MvcMyProject.Models.FavouritesModel>
+
+@{
+    ViewBag.Title = "getFavourites";
+    Layout = "~/Views/Shared/CustomerLayout.cshtml";
+}
+<head> <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+
+    <script>
+        $(document).ready(function () {
+            var url;
+            $("#result").dialog({
+                title: 'Showing Room Info',
+                autoOpen: false,
+                resizable: false,
+                height: 455,
+                width: 550,
+                show: { effect: 'drop', direction: 'up' },
+                modal: true,
+                draggable: true,
+                open: function (event, ui) { $("#result").load(url); },
+                close: function (event, ui) { $("#result").dialog('close'); }
+
+
+            });
+            $(".y").click(function () {
+
+                url = $(this).attr("href");
+                $("#result").dialog('open');
+                return false;
+
+            });
+          
+            });
+    </script>
+</head>
+
+<h2>Your Favourities</h2>
+<div align="left" class="form-login" style="width:600px">
+    <table class="table table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.pgName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pgaddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.roomname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.roomrent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.roomavailability)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.pgName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.pgaddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.roomname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.roomrent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.roomavailability)
+                </td>
+                <td>
+                    @Html.ActionLink("View Details", "getFavDetails", new { roomid = item.roomID, pgid = item.pgID }, new { @class = "y btn btn-info btn-md" })
+
+                </td>
+            </tr>
+        }
+
+    </table>
+    </div>
+    <div id="result"> </div>

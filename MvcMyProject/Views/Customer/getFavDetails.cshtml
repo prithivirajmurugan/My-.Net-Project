@@ -1,0 +1,59 @@
+﻿@model MvcMyProject.Models.RoomModel
+
+<fieldset>
+    <legend><b><i>RoomModel</i></b></legend>
+
+    <div class="display-label">
+        <h3> @Html.DisplayNameFor(model => model.roomname)</h3>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.roomname)
+    </div>
+
+    <div class="display-label">
+        <h3> @Html.DisplayNameFor(model => model.roomrent)</h3>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.roomrent)
+    </div>
+
+    <div class="display-label">
+        <h3> @Html.DisplayNameFor(model => model.roomoccupancy)</h3>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.roomoccupancy)
+    </div>
+
+    <div class="display-label">
+         <h3> @Html.DisplayNameFor(model => model.roomavailability)</h3>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.roomavailability)
+    </div>
+
+    <div class="display-label">
+        <h3> @Html.DisplayNameFor(model => model.roomamenities)</h3>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.roomamenities)
+    </div>
+
+    <div class="display-label">
+       <h3>  @Html.DisplayNameFor(model => model.roomimage1) </h3>
+    </div>
+    <div class="display-field">
+       <img src= @Model.roomimage1 width="150px" height="150px" />
+    </div>
+
+    <div class="display-label">
+        <h3> @Html.DisplayNameFor(model => model.roomimage2) </h3>
+    </div>
+    <div class="display-field">
+        <img src=@Model.roomimage2 width="150px" height="150px" />
+    </div>
+</fieldset>
+<br />
+<br />
+<p>
+    @Html.ActionLink("Back to Home", "HomePage", "Customer", new {@class="btn-sm btn btn-danger" })
+</p>

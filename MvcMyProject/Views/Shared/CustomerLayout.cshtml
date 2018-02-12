@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="~/Content/css_login.css" rel="stylesheet" />
+    <script src="~/Content/themes/Scripts.js"></script>
+    <title>@ViewBag.Title</title>
+
+    <style>
+        body {
+            background-image: url("https://static.pexels.com/photos/280208/pexels-photo-280208.jpeg");
+            background-size:cover;
+        }
+    </style>
+</head>
+<body>
+    <div><marquee><h1>PRITHIVI's PGs</h1></marquee></div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-offset-3 col-md-3">
+                <div class="form-login" style="width:750px">
+                    <div align="center">
+                        <table>
+                            <tr>
+                                <td colspan="5"><h1>Welcome</h1></td>
+                            </tr>
+                            <tr>
+                                <td>@Html.ActionLink("Home", "HomePage", "Customer", new { @class = "btn btn-primary btn-md" })</td>
+                                <td>@Html.ActionLink("Search PG", "SearchPg", "Customer", new { @class = "btn btn-primary btn-md" })</td>
+                                <td>@Html.ActionLink("Show My Favourites", "getFavourites", "Customer", new { @class = "btn btn-primary btn-md" })</td>
+                                <td>@Html.ActionLink("Log Out", "customerSignOut", "Customer", new { @class = "btn btn-primary btn-md" })</td>
+                            </tr>
+                            <tr><td colspan="4">@RenderBody()</td></tr>
+                            <tr><td colspan="2">Developed By</td><td></td><td colspan="2">Copyright  </td></tr>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

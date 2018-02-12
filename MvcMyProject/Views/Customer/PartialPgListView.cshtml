@@ -1,0 +1,93 @@
+﻿@model IEnumerable<MvcMyProject.Models.PgModel>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<link href="~/Content/css_login.css" rel="stylesheet" />
+<script>
+    $(document).ready(function () {
+
+        var url;
+        $("#result").dialog({
+            title: 'Show Room Info',
+            autoOpen: false,
+            resizable: false,
+            height: 455,
+            width: 550,
+            show: { effect: 'drop', direction: 'up' },
+            modal: true,
+            draggable: true,
+            open: function (event, ui) { $("#result").load(url); },
+            close: function (event, ui) { $("#result").dialog('close'); }
+
+
+        });
+        $(".y").click(function () {
+
+            url = $(this).attr("href");
+            $("#result").dialog('open');
+            return false;
+
+        });
+
+    });
+</script>
+<style>
+    td {
+        vertical-align:middle;
+    }
+</style>
+<div>
+    <table class="table table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.pgName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pgaddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nearbyarea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pgImagesAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.amenities)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pgDescription)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.pgName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.pgaddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nearbyarea)
+                </td>
+                <td>
+                    <img src=@item.pgImagesAddress width="150px" height="150px" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.amenities)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.pgDescription)
+                </td>
+                <td>
+                    @Html.ActionLink("View Rooms", "getRoomsDetails1", new { pgid = item.pgID }, new { @class = "y btn btn-danger btn-md" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+<div id="result"></div>

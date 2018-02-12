@@ -1,0 +1,90 @@
+﻿@model MvcMyProject.Models.RoomModel
+
+@{
+    ViewBag.Title = "addRooms";
+    Layout = "~/Views/Shared/OwnerLayout.cshtml";
+}
+
+<h2>Please Add Your Rooms</h2>
+<div align="left" class="form-login" style="width:600px">
+
+    @using (Html.BeginForm("addRooms", "Owner", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <fieldset>
+            <legend>ADD NEW ROOMS</legend>
+            <div class="editor-label">
+                @Html.Label("PG Name")
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.pgID, ViewBag.list as List<SelectListItem>)
+                @Html.ValidationMessageFor(model => model.pgID)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.roomname)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.roomname)
+                @Html.ValidationMessageFor(model => model.roomname)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.roomrent)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.roomrent)
+                @Html.ValidationMessageFor(model => model.roomrent)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.roomoccupancy)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.roomoccupancy, ViewBag.occ as List<SelectListItem>)
+                @Html.ValidationMessageFor(model => model.roomoccupancy)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.roomavailability)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.roomavailability,ViewBag.roomavail as List<SelectListItem>)
+                @Html.ValidationMessageFor(model => model.roomavailability)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.roomamenities)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.roomamenities)
+                @Html.ValidationMessageFor(model => model.roomamenities)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.roomimage1)
+            </div>
+            <div>
+                <input type="file" name="filename1" class="form-control input-sm chat-input">
+            </div>
+
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.roomimage2)
+            </div>
+            <div>
+                <input type="file" name="filename2" class="form-control input-sm chat-input">
+            </div>
+
+            <p>
+                <input type="submit" value="Create" class="btn btn-success btn-md" />
+            </p>
+        </fieldset>
+    }
+    </div>
+
+    <div>
+        @Html.ActionLink("Back to Home", "HomePage")
+    </div>
+

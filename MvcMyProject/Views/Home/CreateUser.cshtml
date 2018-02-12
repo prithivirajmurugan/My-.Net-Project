@@ -1,0 +1,158 @@
+﻿@model MvcMyProject.Models.UserModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/jqueryui")
+@Styles.Render("~/Content/themes/base/css")
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <link href="~/Content/css_login.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <script>
+        $(document).ready(function () {
+            var dateToday = new Date();
+            $("#dateOfBirth").datepicker({
+                dateFormat: "mm/dd/yy",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-70Y:+0Y",
+                minDate: new Date(1987, 10 - 1, 25),
+                maxDate: new Date(2010,10-1,25)
+            });
+        });
+    </script>
+    <style>
+        body {
+            background-image: url("https://static.pexels.com/photos/573552/pexels-photo-573552.jpeg");
+            background-size:cover;
+        }
+    </style>
+    <title>Create User</title>
+</head>
+<body>
+    
+        <div style="color:white">
+            <h1>PRITHIVI's PG</h1></div>
+    <div class="container">
+        <div class="form-login" style="width:500px">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+
+                <fieldset>
+                    <legend>Create Form</legend>
+
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.userName)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.userName, new { @class = "form-control input-sm chat-input" })
+                        @Html.ValidationMessageFor(model => model.userName)
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.userType)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.userType, ViewBag.type as List<SelectListItem>)
+                        @Html.ValidationMessageFor(model => model.userType)
+                    </div>
+
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.userCityID)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.userCityID, ViewBag.listcity as List<SelectListItem>)
+                        @Html.ValidationMessageFor(model => model.userCityID)
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.gender)
+                    </div>
+                    <div class="editor-field">
+                        @Html.RadioButtonFor(model => model.gender, "Male")Male
+                        @Html.RadioButtonFor(model => model.gender, "Female")Female
+
+                        @Html.ValidationMessageFor(model => model.gender)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.dateOfBirth)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.dateOfBirth, new { @readOnly = "readonly" })
+                        @Html.ValidationMessageFor(model => model.dateOfBirth)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.mobileNumber)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.mobileNumber, new { @class = "form-control input-sm chat-input" })
+                        @Html.ValidationMessageFor(model => model.mobileNumber)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.EmailId)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.EmailId, new { @class = "form-control input-sm chat-input" })
+                        @Html.ValidationMessageFor(model => model.EmailId)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.password)
+                    </div>
+                    <div class="editor-field">
+                        @Html.PasswordFor(model => model.password)
+                        @Html.ValidationMessageFor(model => model.password)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.reTypePassword)
+                    </div>
+                    <div class="editor-field">
+                        @Html.PasswordFor(model => model.reTypePassword)
+                        @Html.ValidationMessageFor(model => model.reTypePassword)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.questionName)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.questionName, new { @class = "form-control input-sm chat-input" })
+                        @Html.ValidationMessageFor(model => model.questionName)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.answer)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.answer, new { @class = "form-control input-sm chat-input" })
+                        @Html.ValidationMessageFor(model => model.answer)
+                    </div>
+
+                    <p>
+                        <input type="submit" value="Create User" class="btn btn-success" />
+                    </p>
+                </fieldset>
+            }
+
+            <div>
+                Already a User?
+                @Html.ActionLink("Sign In", "Login")
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

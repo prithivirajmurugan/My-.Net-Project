@@ -1,0 +1,83 @@
+﻿@model MvcMyProject.Models.PgModel
+
+@{
+    ViewBag.Title = "ADD NEW PG";
+    Layout = "~/Views/Shared/OwnerLayout.cshtml";
+}
+<h2>Please Add Your PG Details</h2>
+<div align="left" class="form-login" style="width:600px">
+    @using (Html.BeginForm("addPg", "Owner", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <fieldset>
+            <legend>ADD NEW PG</legend>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.pgName)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.pgName, new { @class = "form-control input-sm chat-input" })
+                @Html.ValidationMessageFor(model => model.pgName)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.pgaddress)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.pgaddress, new { @class = "form-control input-sm chat-input" })
+                @Html.ValidationMessageFor(model => model.pgaddress)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.pgcityid)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.pgcityid, @ViewBag.city as List<SelectListItem>, new { @class = "input-md chat-input" })
+                @Html.ValidationMessageFor(model => model.pgcityid)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.nearbyarea)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.nearbyarea, new { @class = "form-control input-sm chat-input" })
+                @Html.ValidationMessageFor(model => model.nearbyarea)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.pgImagesAddress)
+            </div>
+
+            <div align="center">
+                <input type="file" name="filename" class="form-control input-sm chat-input" />
+            </div>
+
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.amenities)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.amenities, new { @class = "form-control input-sm chat-input" })
+                @Html.ValidationMessageFor(model => model.amenities)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.pgDescription)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.pgDescription, new { @class = "form-control input-sm chat-input" })
+                @Html.ValidationMessageFor(model => model.pgDescription)
+            </div>
+
+            <p>
+                <input type="submit" value="Create" id="btn_create" class="btn btn-success btn-md" />
+            </p>
+        </fieldset>
+    }
+</div>
+
+
+<div>
+    @Html.ActionLink("Back to Home", "HomePage")
+</div>

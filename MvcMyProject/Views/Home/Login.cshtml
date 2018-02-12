@@ -1,0 +1,83 @@
+﻿@model MvcMyProject.Models.LoginModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/Content/css_login.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+
+    <style>
+        body {
+            background-image:url("https://static.pexels.com/photos/271639/pexels-photo-271639.jpeg");
+            background-size:cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="col-md-offset-6 col-md-3">
+            <h1>PRITHIVI's PG</h1>
+            <div class="form-login">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+
+                    <fieldset>
+                        <legend><b>Welcome Back</b></legend>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.emailID)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.emailID, new { @class = "form-control input-sm chat-input"})
+                            @Html.ValidationMessageFor(model => model.emailID)
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.password)
+                        </div>
+                        <div class="editor-field">
+                            @Html.PasswordFor(model => model.password, new { @class = "form-control input-sm chat-input"})
+                            @Html.ValidationMessageFor(model => model.password)
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.loginType)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownList("logintype", "Select")
+                            @Html.ValidationMessageFor(model => model.loginType)
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.Label("Remember ME")
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.rememberMe)
+                            @Html.ValidationMessageFor(model => model.rememberMe)
+                        </div>
+
+                        <p>
+                            <input type="submit" value="Login" class="btn btn-primary btn-md" />
+                        </p>
+                    </fieldset>
+                }
+                <div>
+                    New User?
+                    @Html.ActionLink("Registor Now", "CreateUser")
+                </div>
+            </div>
+        </div>
+        </div>
+    
+</body>
+</html>

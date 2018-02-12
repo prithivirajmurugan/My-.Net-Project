@@ -1,0 +1,51 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+   <style>
+       body {
+           background-image: url("https://static.pexels.com/photos/236495/pexels-photo-236495.jpeg");
+           background-size:cover;
+       }
+   </style>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+    <link href="~/Content/css_login.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>OwnerLayout</title>
+</head>
+<body>
+    <div><marquee><h1>PRITHIVI's PGs</h1></marquee></div>
+      <div class="container-fluid">
+            <div class="col-md-offset-3 col-md-3">
+                <div class="form-login" style="width:750px">
+                    <table>
+                        <tr>
+                            <td colspan="4"><h2><b>Welcome Owner</b></h2></td>
+
+                        </tr>
+                        <tr>
+                            <td>@Html.ActionLink("Add Your PG", "addPg", "Owner", new { @class = "btn btn-primary btn-md" })</td>
+                            <td>@Html.ActionLink("Add Rooms", "addRooms", "Owner", new { @class = "btn btn-primary btn-md" })</td>
+                            <td>@Html.ActionLink("My List Of PGs", "PgList", "Owner", new { @class = "btn btn-primary btn-md" })</td>
+                            <td>@Html.ActionLink("Sign Out", "SignOut", "Owner", new { @class = "btn btn-primary btn-md" })</td>
+                        </tr>
+                        <tr>
+                            
+                                <td colspan="4">@RenderBody()</td>
+                            
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+</body>
+</html>

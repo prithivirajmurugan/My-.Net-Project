@@ -1,0 +1,73 @@
+﻿@{
+    ViewBag.Title = "getpgofcity";
+    Layout = "~/Views/Shared/CustomerLayout.cshtml";
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>getpgofcity</title>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="~/Content/css.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+
+
+
+
+        $(document).ready(function () {
+      
+
+
+
+            $("#btn_cust").click(function () {
+                var address = "/Customer/pgbycity";
+                var city = $("#customerCity").val();
+
+                $.getJSON(address, { givencity: city }, function (data) {
+                    alert(data);
+                    var str = JSON.stringify(data);
+
+                    var jsondata = $.parseJSON(str);
+
+                    var table = "<table class='table-hover'><tr><td>PG Name</td><td>PG Address</td><td>PG Near By Area</td><td>PG Amenities</td><td>PG Image</td></tr>";
+                    $.each(jsondata, function () {
+                        var Pgname = this["pgName"];
+                        var PgAddress = this["pgAddress"];
+                        var PgNearByArea = this["nearbyarea"];
+                        var PgImage = this["pgImagesAddress"];
+                        var PgAmenities = this["amenities"];
+                        table = table + "<tr><td>" + Pgname + "</td><td>" + PgAddress + "</td><td>" + PgNearByArea + "</td><td>" + PgAmenities + "</td><td>" + "<img height='150px' width='150px' src=" + PgImage + " />";
+                    });
+                    table = table + "</table>";
+                    $("#result").html(table);
+
+
+                });
+
+
+            });
+        });
+
+
+    </script>
+</head>
+<body>
+    <h2>get pg of city</h2>
+
+    <div align="center" class="form-login" style="width:600px">
+            @Html.DropDownList("customerCity", ViewBag.listcity as List<SelectListItem>, new { @class = "text text-primary" })
+            @Html.DropDownList("nearByArea", ViewBag.nearbyarea as List<SelectListItem>, new { @class = "text text-primary" })
+            <input type="button" id="btn_cust" value="Get PGs" class="btn btn-info" />
+            <br />
+            <br />
+        </div>
+            <div id="result"></div>
+
+        </>
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "PgNotAdded";
+    Layout = "~/Views/Shared/OwnerLayout.cshtml";
+}
+
+<div style="text-align:center">
+    <h2>Your PG is Not Added  </h2><br /><br />
+</div> <div class="form-login">
+    <h2>Try Again @Html.ActionLink("Here", "addPg", "Owner")</h2> <br /><br />
+    <h2>To Review your Pg Click @Html.ActionLink("Here", "PgList", "Owner")</h2>
+</div>
